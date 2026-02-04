@@ -40,7 +40,7 @@ pipeline {
           sh '''
             set -e
             . .venv/bin/activate
-            python3 batch_score.py
+            python3 retention_batch_scoring.py
           '''
         }
       }
