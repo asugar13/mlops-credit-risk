@@ -18,7 +18,7 @@ def stable_price(customer_id: int, asof_date: dt.date) -> Decimal:
 
 
 def main() -> None:
-    db_host = 'localhost'
+    db_host = 'postgres' # works because of local routing
     db_port = int(os.getenv("DB_PORT", "5432"))
     db_name = os.getenv("DB_NAME", "insurance_pricing")
     db_user = 'osbdet'
