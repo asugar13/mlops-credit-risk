@@ -37,11 +37,6 @@ pipeline {
 
     stage('Run batch scoring') {
       steps {
-        withCredentials([usernamePassword(
-          credentialsId: 'pg-cred',
-          usernameVariable: 'DB_USER',
-          passwordVariable: 'DB_PASSWORD'
-        )]) {
           sh '''
             set -e
             . .venv/bin/activate
@@ -50,7 +45,6 @@ pipeline {
         }
       }
     }
-  }
 
   post {
     always {
