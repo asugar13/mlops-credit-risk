@@ -71,19 +71,8 @@ def score_acquisition():
     conn = get_conn()
     try:
         with conn.cursor() as cur:
-            # 1) Upsert customer (acquisition/new customer)
-            # lastContractDate: for new business, set to today (or quote date)
-            cur.execute(
-                """
-                INSERT INTO customers (customerId, fullName, lastContractDate, currentPricePerMonth, lastScoredAt, modelVersion)
-                VALUES (%s, %s, %s, NULL, %s, %s)
-                ON CONFLICT (customerId) DO UPDATE
-                SET fullName = EXCLUDED.fullName
-                """,
-                (customer_id, full_name, today, now, MODEL_VERSION),
-            )
 
-            # 2) Create scoring run (one per request; simplest)
+            # 1) Create scoring run (one per request; simplest)
             cur.execute(
                 """
                 INSERT INTO scoring_runs (modelVersion, notes)
@@ -94,7 +83,7 @@ def score_acquisition():
             )
             run_id = cur.fetchone()["runid"]
 
-            # 3) Store prediction
+            # 2) Store prediction
             cur.execute(
                 """
                 INSERT INTO customer_predictions (runId, customerId, pricePerMonth, scoredAt)
