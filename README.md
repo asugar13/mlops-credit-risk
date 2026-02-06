@@ -1,4 +1,4 @@
-# MLOps Demo — Insurance Pricing (Batch Renewals + Jenkins + Postgres)
+# MLOps Demo — Insurance Pricing (Batch Renewals + Real time quotations)
 
 This repo is a **simple MLOps demonstration** for an auto-insurance pricing use case:
 
@@ -128,7 +128,7 @@ Example queries:
 ```bash
 SELECT * FROM scoring_runs;
 ```
-## 8 — (Optional) Real-time scoring API (Flask) + how to test it
+## 8 — Real-time scoring API (Flask) + how to test it
 
 This repo can also include a simple Flask API to demonstrate **real-time scoring for new quotations**.  
 The endpoint generates a deterministic pseudo-premium and stores the prediction in Postgres.
